@@ -1,0 +1,29 @@
+Q.1 Given a Binary Tree, convert it into its mirror
+
+
+                         80          |         80
+                         /\          |         /\
+                        /  \         |        /  \
+                       90   70       |      70    90
+   	                  / \            |            /\
+					 /   \           |           /  \
+                    10   20          |          20  10
+
+
+
+
+Solution : Swap left and right child 
+
+
+class Solution {
+  public:
+    // Function to convert a binary tree into its mirror tree.
+    void mirror(Node* node) {
+        // code here
+        if(node == NULL)
+        return ;
+        mirror(node->left) ;
+        mirror(node->right) ;
+        swap(node->left,node->right);
+    }
+};
