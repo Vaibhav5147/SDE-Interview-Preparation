@@ -5,9 +5,9 @@ Q.1 Given a Binary Tree, convert it into its mirror
                          /\          |         /\
                         /  \         |        /  \
                        90   70       |      70    90
-   	                  / \            |            /\
-					 /   \           |           /  \
-                    10   20          |          20  10
+   	                  / \        |            /\
+			 /   \       |           /  \
+                        10   20      |          20  10
 
 
 
