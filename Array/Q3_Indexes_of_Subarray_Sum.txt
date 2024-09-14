@@ -1,0 +1,63 @@
+Q.3 : Given an unsorted array arr of size n that contains only non negative integers, find a sub-array (continuous elements) that has sum equal to s. You mainly need to return the left and right indexes(1-based indexing) of that subarray.
+
+In case of multiple subarrays, return the subarray indexes which come first on moving from left to right. If no such subarray exists return an array consisting of element -1.
+Ref : https://www.geeksforgeeks.org/problems/subarray-with-given-sum-1587115621/1?page=1&sortBy=submissions
+
+
+Approach :1 Naive , generate all subrray and calculate sum 
+         Time complexity : O(N*N) ;
+		 If use prfix sum array then space complexity : O(N)
+
+Approach :2 , Using variable size sliding window technique
+           1. increase size of window until sum of numbers in window is less then target sum .
+           2. reduce window from left when sum of numbers  in window  becomes greater then target sum .
+		  
+     // Function to find a continuous sub-array which adds up to a given number.
+    vector<int> subarraySum(vector<int> arr, int n, long long s) {
+       
+        int left = 0 ;
+        int right = 0;
+        long long totalSum = 0 ;
+        vector<int> ans ;
+        
+       
+        if (s == 0) {
+        for (int i = 0; i < n; i++) {
+            if (arr[i] == 0) {
+                return {i + 1, i + 1}; 
+            }
+        }
+        return {-1};
+       }
+    
+        while(right <= n)
+        {   /*
+              Shrink window from left when sum become larger then target sum
+            */ 
+            while(totalSum > s && left <right)
+            {
+                totalSum = totalSum - arr[left] ;
+                left++ ;
+            }
+            
+            if(totalSum == s)
+                return {left+1,right} ;
+            
+            /*
+                Increse size of window
+            */
+            if(right<n)
+                totalSum += arr[right] ;
+            
+            right++;
+            
+            
+        }
+       
+        return {-1} ;
+    }
+	
+	
+	
+Related question : 	Given an array of integers nums and an integer k, return the total number of subarrays whose sum equals to k. A subarray is a contiguous non-empty sequence of elements within an array.
+Ref : https://leetcode.com/problems/subarray-sum-equals-k/description/
