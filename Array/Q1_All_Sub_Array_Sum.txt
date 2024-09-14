@@ -88,3 +88,7 @@ Then total count = (N-i) + (N-i)*i
 			for(int i=0;i<N;i++)
 			totalSum += arr[i]*(N-i)*(1+i) ;
 		}
+		
+Time Complexity : O(N) , Space O(1) 	
+	
+		

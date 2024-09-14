@@ -1,0 +1,46 @@
+Q.2  Given an unsorted array arr containing both positive and negative numbers. Your task is to create an array of alternate positive and negative numbers without changing the relative order of positive and negative numbers.
+Note: Array should start with a positive number and 0 (zero) should be considered a positive element.
+void rearrange(vector<int> &arr) {
+        // code here
+        int n = arr.size() ;
+        vector<int> negNum ;
+        vector<int> posNum;
+       
+       for(int i=0;i<n;i++)
+       {
+           if(arr[i]>=0)
+            posNum.push_back(arr[i]);
+           else
+            negNum.push_back(arr[i]);
+       }
+       
+       int posIndx=0;
+       int negIndx = 0;
+      
+      
+       //arr.clear() ;
+       
+       for(int i=0;i<n;i++)
+       {
+           if(posIndx < posNum.size() && negIndx < negNum.size())
+           {
+               if(i%2==0)
+               {
+                  arr[i] = posNum[posIndx++];
+               }
+               else
+               {
+                   arr[i] = negNum[negIndx++];
+               }
+           }
+           else if(posIndx < posNum.size())
+           {
+               arr[i] = posNum[posIndx++];
+           }
+           else
+           arr[i] = negNum[negIndx++];
+       }
+       
+  
+        
+    }
