@@ -1,0 +1,72 @@
+Q.1 Given a Binary Tree (BT), convert it to a Doubly Linked List (DLL) in place. The left and right pointers in nodes will be used as previous and next pointers respectively in converted DLL. The order of nodes in DLL must be the same as the order of the given Binary Tree. The first node of Inorder traversal (leftmost node in BT) must be the head node of the DLL.
+
+Ref : https://www.geeksforgeeks.org/problems/binary-tree-to-dll/1
+
+Approach 1: Store all the keys in array or vector using inorder traversal of binary tree .
+            traverse tree and create Doubly linked list .
+		
+			void inorderTravese(Node *root, vector<int> &InorderData)
+			{
+			   if (root==NULL)
+				return ;
+				inorderTravese(root->left,InorderData);
+				InorderData.push_back(root->data) ;
+				inorderTravese(root->right,InorderData);
+			}
+			Node* bToDLL(Node* root) {
+				// code here
+				vector<int> InorderData ;
+				inorderTravese(root,InorderData) ;
+				
+				Node *head = NULL ;
+				Node*prev = NULL ;
+				for(auto key : InorderData)
+				{   
+					Node *node = new Node(key) ;
+					if(prev == NULL)
+					{
+						head = node ;
+					}
+					else
+					{
+						prev->right = node ;
+						node->left = prev ;
+					}
+					prev = node ;
+				}
+				return head ;
+			}
+			
+
+Time complexity :  O(no. of nodes) 
+
+Approach 2:	Without using extra space ,arr or vector
+
+			void bDLL(Node* root, Node* &head, Node* &prev)
+			{
+			if(!root)
+				return;
+			bDLL(root->left,head,prev);
+			
+			 if(!prev)
+			  head = root;     // For first node , make head node
+			 else
+			 { 
+			  //link new node with previous node
+			  root->left = prev;
+			  prev->right = root;
+			 }
+			prev = root;       // update previous node .
+			bDLL(root->right,head,prev);
+			}
+			
+			// This function should return head to the DLL
+			Node * bToDLL(Node *root)
+			{ 
+				Node* head = NULL;
+				Node* prev=NULL;
+				bDLL(root,head,prev);
+				return head;
+			}
+			
+Time complexity :  O(no. of nodes) 			
