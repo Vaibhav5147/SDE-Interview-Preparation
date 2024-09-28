@@ -1,0 +1,35 @@
+Q.1 Edit Distance
+Problem Refrence : https://www.geeksforgeeks.org/problems/edit-distance3702/1?page=1&difficulty=Hard&sortBy=submissions
+
+
+Approach :1 Using Recursion
+           
+		  for 0 based indexing 
+          let str1 length = n , apple
+		  let str2 length = m , applepie
+		  
+		  start matching str1 and str2 from end of strings 
+		  i = n-1
+		  m = n-1
+		  
+		  then for in case of Insertion , If last char are not matched 
+		  edit(i ,j-1)
+         
+          then for in case of deletion , If last char are not matched
+		  edit(i-1,j)
+		  
+		  then for in case of replace , If last char are not mathed 
+		  edit(i-1,j-1)
+		  
+		  
+		  
+		  ans = 1 + min( addition , deletion , replace)
+		      = 1 + min(edit(i ,j-1) , edit(i-1,j) ,  edit(i-1,j-1) )
+			  
+			  
+		Now Base cases
+        
+        1. what if str1 exahusted    , no of operation  required j+1 ;
+		2. what if str2 exahusted , no of operation required i+1 ; 
+        
+        Time complexity : exponential 		
